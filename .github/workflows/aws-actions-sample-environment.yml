@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     environment:
-      name: {{ github.event.inputs.env }}
+      name: ${{ github.event.inputs.env }}
     name: aws test
     runs-on: ubuntu-latest
     steps:
