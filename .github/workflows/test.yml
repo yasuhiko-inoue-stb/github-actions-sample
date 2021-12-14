@@ -1,0 +1,17 @@
+name: test
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Initialize
+      # Composite Actionを相対パスで指定
+      # Composite Actionが別リポジトリにある場合は{owner}/{repository_name}/{path}@{ブランチ or タグ名}
+      uses: yasuhiko-inoue-stb/github-composite-actions-sample/composite-action/init
+      with:
+        node-version: 16.x
+
