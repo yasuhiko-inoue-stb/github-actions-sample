@@ -1,12 +1,12 @@
 name: aws-actions-environment-sample
 on:
   workflow_dispatch:
-  	env:
-  		type: choice
-		  options: 
-		  - dev
-		  - prod
-		  description: '環境'
+    env:
+      type: choice
+      options: 
+      - dev
+      - prod
+      description: '環境'
 
 jobs:
   test:
