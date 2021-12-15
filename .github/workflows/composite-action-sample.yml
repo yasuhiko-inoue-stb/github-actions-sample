@@ -1,4 +1,4 @@
-name: test
+name: composite-action-sample
 on:
   workflow_dispatch:
 
