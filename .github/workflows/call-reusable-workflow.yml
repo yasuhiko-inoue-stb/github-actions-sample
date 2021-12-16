@@ -13,7 +13,7 @@ on:
 jobs:
   call-workflow:
     # {owner}・{repo}・{path}・{ref}はReusable Workflowを定義しているリポジトリに読み替え
-    uses: {owner}/{repo}/{path}@{ref}
+    uses: yasuhiko-inoue-stb/github-actions-sample/.github/workflows/reusable-workflow.yml@main
     with:
       env: ${{ github.event.inputs.env }}
       command: s3 ls
