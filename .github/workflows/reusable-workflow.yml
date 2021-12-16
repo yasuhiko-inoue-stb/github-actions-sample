@@ -1,6 +1,7 @@
 name: Reusable workflow example
 
 on:
+  # Reusable Workflowはworkflow_call
   workflow_call:
     inputs:
       command:
@@ -9,14 +10,16 @@ on:
       env:
         required: true
         type: string
+    # 呼び出し側より取得するsecretを指定
     secrets:
-      AWS_ACCESS_KEY_ID:
+      access_key_id:
         required: true
-      AWS_SECRET_ACCESS_KEY:
+      secret_access_key:
         required: true
 
 jobs:
   example_job:
+    # Environment Secretを使う場合はReusable Workflow側で設定
     environment: ${{ inputs.env }}
     name: exec aws command
     runs-on: ubuntu-latest
@@ -24,11 +27,11 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.access_key_id }}
+          aws-secret-access-key: ${{ secrets.secret_access_key }}
           aws-region: ap-northeast-1
 
       - name: aws ${{ inputs.command }}
         run: |
-          aws ${{ inputs.command }} 
+          aws ${{ inputs.command }}
 
